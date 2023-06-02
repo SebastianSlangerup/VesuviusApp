@@ -1,4 +1,6 @@
-﻿using Microsoft.Extensions.Logging;
+﻿using System.Reflection;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Logging;
 
 namespace VesuviusApp;
 
@@ -14,6 +16,11 @@ public static class MauiProgram
 				fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
 				fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
 			});
+		
+		using var stream = Assembly.GetExecutingAssembly()
+			.GetManifestResourceStream("com.companyname.vesuviusapp.appsettings.json");
+		var config = new ConfigurationBuilder().AddJsonStream(stream).Build();
+		builder.Configuration.AddConfiguration(config);
 
 #if DEBUG
 		builder.Logging.AddDebug();
@@ -22,4 +29,3 @@ public static class MauiProgram
 		return builder.Build();
 	}
 }
-
