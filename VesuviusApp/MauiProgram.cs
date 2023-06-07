@@ -1,12 +1,18 @@
 ﻿using System.Reflection;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
+using Microsoft.Maui.Controls.Xaml;
 
 namespace VesuviusApp;
 
 public static class MauiProgram
 {
-	public static MauiApp CreateMauiApp()
+	public static void setDefaultDebugConfig()
+	{
+        Preferences.Set("DatabaseEndpoint", "localhost:44306");
+    }
+
+    public static MauiApp CreateMauiApp()
 	{
 		var builder = MauiApp.CreateBuilder();
 		builder
@@ -16,14 +22,10 @@ public static class MauiProgram
 				fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
 				fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
 			});
-		
-		using var stream = Assembly.GetExecutingAssembly()
-			.GetManifestResourceStream("com.companyname.vesuviusapp.appsettings.json");
-		var config = new ConfigurationBuilder().AddJsonStream(stream).Build();
-		builder.Configuration.AddConfiguration(config);
 
 #if DEBUG
-		builder.Logging.AddDebug();
+        builder.Logging.AddDebug();
+		setDefaultDebugConfig();
 #endif
 
 		return builder.Build();

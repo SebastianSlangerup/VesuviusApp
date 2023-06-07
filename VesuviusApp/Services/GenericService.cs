@@ -5,26 +5,29 @@ namespace VesuviusApp.Services;
 
 public class GenericService
 {
-    private HttpClient _httpClient;
-    private IConfiguration _configuration { get; set; }
+    public HttpClient httpClient;
+    public string token { get; set; }
+
 
     public GenericService()
     {
-        _httpClient = new HttpClient();
+        httpClient = new HttpClient();
+        token = string.Empty;
+
     }
 
     public string baseDBEndpoint
     {
         get => baseDBEndpoint;
-        private set => baseDBEndpoint = _configuration["EndPoints:DatabaseEndpoint"];
+        private set => baseDBEndpoint = Preferences.Default.Get<string>("DatabaseEndpoint", "localhost:44306");
     }
 
     public string SetToken(string username, string password)
     {
-        var res = _httpClient.GetAsync(baseDBEndpoint + "");
+        var res = httpClient.GetAsync(baseDBEndpoint + "");
         if (res.Result.StatusCode == HttpStatusCode.OK)
         {
-            _httpClient.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers
+            httpClient.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers
                 .AuthenticationHeaderValue("Bearer", res.Result.Content.ToString());
         }
         return "";
