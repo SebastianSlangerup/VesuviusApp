@@ -12,7 +12,7 @@ public class GenericViewModel : INotifyPropertyChanged
 
     public GenericViewModel()
     {
-        Title = "Generic"; 
+        Title = "Generic";
     }
 
     public bool IsBusy

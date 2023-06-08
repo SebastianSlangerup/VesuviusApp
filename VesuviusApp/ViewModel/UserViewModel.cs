@@ -15,7 +15,7 @@ namespace VesuviusApp.ViewModel
 
         public UserViewModel()
         {
-            Title = "Users";
+            Title = "login";
         }
 
         public async void login(string username, string password)
@@ -31,10 +31,5 @@ namespace VesuviusApp.ViewModel
         {
             return true;
         }
-
-       
-
-        
-
     }
 }

@@ -1,12 +1,15 @@
-﻿namespace VesuviusApp;
+﻿using VesuviusApp.View;
+using VesuviusApp.ViewModel;
+
+namespace VesuviusApp;
 
 public partial class App : Application
 {
-	public App()
+	public App(UserViewModel viewModel)
 	{
 		InitializeComponent();
 
-		MainPage = new AppShell();
+		MainPage = new Login(viewModel);
 	}
 }
 

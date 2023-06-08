@@ -1,21 +1,13 @@
 ﻿using System;
-using System.Collections;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.ComponentModel.Design;
-using System.Linq;
 using System.Net;
 using System.Net.Http.Headers;
-using System.Text;
-using System.Threading.Tasks;
-using Android.Hardware.Usb;
 using VesuviusApp.Model;
 
 namespace VesuviusApp.Services
 {
     public class UserService : GenericService
     {
-        
         public static ObservableCollection<User> ActiveUsers = new();
         
         public static async Task<string> Login(string username, string password)
@@ -35,6 +27,11 @@ namespace VesuviusApp.Services
         public static void SignUp(string username, string password, string email, string phoneNumber)
         {
            var signup = httpClient.GetAsync(baseDBEndpoint+""); 
+        }
+        
+        public static void lockout(User user)
+        {
+            ActiveUsers.Remove(user); 
         }
         
         private static async Task<string> SetToken(string username, string password)
