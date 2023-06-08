@@ -4,22 +4,32 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using VesuviusApp.Model;
 using VesuviusApp.Services;
 
 namespace VesuviusApp.ViewModel
 {
-    internal class UserViewModel : GenericViewModel
+    public class UserViewModel : GenericViewModel
     {
         public ObservableCollection<User> Users { get; set; }
 
-        public Command Login; 
-
         public UserViewModel()
         {
-            if (Users == null)
+            Title = "Users";
+        }
+
+        public async void login(string username, string password)
+        {
+            var Token = UserService.Login(username,password);
+            if (Token.Result != "")
             {
-                Users = new ObservableCollection<User>();
+                
+                await Shell.Current.GoToAsync("/VesuviusApp/Mainpage");
             }
+        }
+        public bool signUp(string username, string password, string email, string phoneNumber)
+        {
+            return true;
         }
 
        

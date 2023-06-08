@@ -1,6 +1,6 @@
 ﻿using VesuviusApp.ViewModel;
 
-namespace VesuviusApp;
+namespace VesuviusApp.View;
 
 public partial class MainPage : ContentPage
 {

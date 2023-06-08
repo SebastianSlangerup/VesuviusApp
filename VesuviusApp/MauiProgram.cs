@@ -2,6 +2,9 @@
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 using Microsoft.Maui.Controls.Xaml;
+using VesuviusApp.Services;
+using VesuviusApp.View;
+using VesuviusApp.ViewModel;
 
 namespace VesuviusApp;
 
@@ -28,6 +31,14 @@ public static class MauiProgram
 		setDefaultDebugConfig();
 #endif
 
-		return builder.Build();
+        builder.Services.AddSingleton<GenericService>();
+        builder.Services.AddSingleton<TableService>();
+        builder.Services.AddSingleton<UserService>();
+        builder.Services.AddSingleton<GenericViewModel>();
+        builder.Services.AddSingleton<TableViewModel>();
+        builder.Services.AddTransient<UserViewModel>();
+        builder.Services.AddTransient<MainPage>();
+
+        return builder.Build();
 	}
 }

@@ -10,6 +10,11 @@ public class GenericViewModel : INotifyPropertyChanged
     private bool isBusy;
     private string title;
 
+    public GenericViewModel()
+    {
+        Title = "Generic"; 
+    }
+
     public bool IsBusy
     {
         get => isBusy;

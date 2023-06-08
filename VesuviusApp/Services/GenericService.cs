@@ -5,7 +5,7 @@ namespace VesuviusApp.Services;
 
 public class GenericService
 {
-    public HttpClient httpClient;
+    public static HttpClient httpClient;
     public string token { get; set; }
 
 
@@ -16,21 +16,11 @@ public class GenericService
 
     }
 
-    public string baseDBEndpoint
+    public static string baseDBEndpoint
     {
         get => baseDBEndpoint;
         private set => baseDBEndpoint = Preferences.Default.Get<string>("DatabaseEndpoint", "localhost:44306");
     }
 
-    public string SetToken(string username, string password)
-    {
-        var res = httpClient.GetAsync(baseDBEndpoint + "");
-        if (res.Result.StatusCode == HttpStatusCode.OK)
-        {
-            httpClient.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers
-                .AuthenticationHeaderValue("Bearer", res.Result.Content.ToString());
-        }
-        return "";
-    }
-    
+  
 }
