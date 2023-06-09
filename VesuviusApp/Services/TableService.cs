@@ -9,10 +9,9 @@ namespace VesuviusApp.Services;
 
 public class TableService : GenericService
 {
-    public static ObservableCollection<Table> Tables = new ObservableCollection<Table>();
-
-    public static async Task<ObservableCollection<Table>> selectFreeTables()
+    public static async Task<ObservableCollection<Table>> SelectFreeTables()
     {
+        ObservableCollection<Table> Tables = null;
         var res = await httpClient.GetAsync(baseDBEndpoint + "/tables/available");
 
         if (res.IsSuccessStatusCode)

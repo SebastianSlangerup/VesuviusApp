@@ -12,5 +12,26 @@
             Text="Welcome to login"
             VerticalOptions="Center" 
             HorizontalOptions="Center" />
+        
+        <Label
+            Text="Username: "
+            ></Label>
+        <Entry
+            x:Name="username"
+            ></Entry>
+        <Label
+            Text="Password: "
+        ></Label>
+        <Entry
+            x:Name="password"
+        ></Entry>
+        
+        <Button
+            x:Name="BtnLogin"
+            Text="Login"
+            Command="{Binding login}"
+            
+            
+            ></Button>
     </VerticalStackLayout>
 </ContentPage>

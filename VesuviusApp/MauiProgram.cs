@@ -12,7 +12,7 @@ public static class MauiProgram
 {
 	public static void setDefaultDebugConfig()
 	{
-        Preferences.Set("DatabaseEndpoint", "localhost:44306");
+        Preferences.Set("DatabaseEndpoint", "localhost:7063");
     }
 
     public static MauiApp CreateMauiApp()

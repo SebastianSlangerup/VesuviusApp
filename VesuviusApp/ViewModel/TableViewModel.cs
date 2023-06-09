@@ -10,17 +10,10 @@ namespace VesuviusApp.ViewModel
         public ObservableCollection<Table> Tables { get; set; }
         TableService TableService { get; set; }
 
-        public TableViewModel(TableService tableService)
+        void GetTables()
         {
-            Title = "Tables";
-            this.TableService = tableService;
-
-            gettable();
+           Tables =  TableService.SelectFreeTables().Result;
         }
-
-        public async void gettable()
-        {
-            this.Tables = await TableService.selectFreeTables();
-        }
+        
     }
 }

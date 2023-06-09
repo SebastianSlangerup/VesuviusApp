@@ -2,23 +2,21 @@
 using System.Collections.ObjectModel;
 using System.Net;
 using System.Net.Http.Headers;
+using CommunityToolkit.Mvvm.Input;
 using VesuviusApp.Model;
 
 namespace VesuviusApp.Services
 {
     public class UserService : GenericService
     {
-        public static ObservableCollection<User> ActiveUsers = new();
-        
         public static async Task<string> Login(string username, string password)
         {
-            var login = await httpClient.GetAsync(baseDBEndpoint + "");
+            var login = await httpClient.GetAsync(baseDBEndpoint + $"/login/{username}/{password}");
             var Token = "";
 
             if (login.StatusCode == HttpStatusCode.Accepted)
             {
-                 Token = SetToken(username, password).Result;
-                 ActiveUsers.Add(new User(username,password,true,Token));
+                Token = SetToken(username, password).Result;
             }
 
             return Token;
@@ -28,12 +26,7 @@ namespace VesuviusApp.Services
         {
            var signup = httpClient.GetAsync(baseDBEndpoint+""); 
         }
-        
-        public static void lockout(User user)
-        {
-            ActiveUsers.Remove(user); 
-        }
-        
+
         private static async Task<string> SetToken(string username, string password)
         {
             var res = await httpClient.GetAsync(baseDBEndpoint + $"/{username}{password}");
