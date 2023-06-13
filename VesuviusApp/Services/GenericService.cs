@@ -3,23 +3,16 @@ using Microsoft.Extensions.Configuration;
 
 namespace VesuviusApp.Services;
 
-public class GenericService
+public static class GenericService
 {
-    public static HttpClient httpClient;
-    public string token { get; set; }
+    public static HttpClientHandler clientHandler = new HttpClientHandler(); 
+    public static HttpClient client = new HttpClient(clientHandler);
 
-
-    public GenericService()
-    {
-        httpClient = new HttpClient();
-        token = string.Empty;
-
-    }
+    private static string _baseDBEndpoint = "http://127.0.0.1:5118";
 
     public static string baseDBEndpoint
     {
-        get => baseDBEndpoint;
-        private set => baseDBEndpoint = Preferences.Default.Get<string>("DatabaseEndpoint", "localhost:44306");
+        get => _baseDBEndpoint;
     }
 
   

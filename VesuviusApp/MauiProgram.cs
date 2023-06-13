@@ -10,11 +10,6 @@ namespace VesuviusApp;
 
 public static class MauiProgram
 {
-	public static void setDefaultDebugConfig()
-	{
-        Preferences.Set("DatabaseEndpoint", "localhost:7063");
-    }
-
     public static MauiApp CreateMauiApp()
 	{
 		var builder = MauiApp.CreateBuilder();
@@ -28,10 +23,8 @@ public static class MauiProgram
 
 #if DEBUG
         builder.Logging.AddDebug();
-		setDefaultDebugConfig();
 #endif
 
-        builder.Services.AddSingleton<GenericService>();
         builder.Services.AddSingleton<TableService>();
         builder.Services.AddSingleton<UserService>();
         builder.Services.AddSingleton<GenericViewModel>();

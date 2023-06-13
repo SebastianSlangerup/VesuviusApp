@@ -18,14 +18,16 @@
             ></Label>
         <Entry
             x:Name="username"
+            Text="{Binding Username}"
             ></Entry>
         <Label
             Text="Password: "
         ></Label>
         <Entry
             x:Name="password"
+            Text="{Binding Password}"
         ></Entry>
-        
+
         <Button
             x:Name="BtnLogin"
             Text="Login"
@@ -33,5 +35,10 @@
             
             
             ></Button>
+
+        <Label
+            Text="{Binding ErrorMsg} "
+            ></Label>
+
     </VerticalStackLayout>
 </ContentPage>

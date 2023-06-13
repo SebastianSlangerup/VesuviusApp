@@ -9,7 +9,7 @@ namespace VesuviusApp.ViewModel;
 public partial class GenericViewModel : ObservableObject
 {
     [field: ObservableProperty]
-    public User user;
+    public User myUser;
 
     [field: ObservableProperty] 
     public string Title { get; set; }
@@ -17,10 +17,5 @@ public partial class GenericViewModel : ObservableObject
     public GenericViewModel()
     {
         Title = "Generic";
-    }
-
- 
-    
-    
-    
+    }    
 }

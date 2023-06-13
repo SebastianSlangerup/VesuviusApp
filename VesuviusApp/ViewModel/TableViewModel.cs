@@ -8,7 +8,6 @@ namespace VesuviusApp.ViewModel
     public class TableViewModel : GenericViewModel
     {
         public ObservableCollection<Table> Tables { get; set; }
-        TableService TableService { get; set; }
 
         void GetTables()
         {

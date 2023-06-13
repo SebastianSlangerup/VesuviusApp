@@ -7,12 +7,12 @@ using System.Collections.ObjectModel;
 
 namespace VesuviusApp.Services;
 
-public class TableService : GenericService
+public class TableService
 {
     public static async Task<ObservableCollection<Table>> SelectFreeTables()
     {
         ObservableCollection<Table> Tables = null;
-        var res = await httpClient.GetAsync(baseDBEndpoint + "/tables/available");
+        var res = await GenericService.client.GetAsync(GenericService.baseDBEndpoint + "/tables/available");
 
         if (res.IsSuccessStatusCode)
         {
