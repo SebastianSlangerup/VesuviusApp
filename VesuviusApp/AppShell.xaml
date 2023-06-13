@@ -6,10 +6,17 @@
     xmlns:local="clr-namespace:VesuviusApp.View"
     Shell.FlyoutBehavior="Disabled">
 
-    <ShellContent
-        Title="Home"
-        ContentTemplate="{DataTemplate local:MainPage}"
-        Route="MainPage" />
+    <TabBar>
+        <Tab Title="Home">
+            <ShellContent ContentTemplate="{DataTemplate local:MainPage}" Route="MainPage" />
+	    </Tab>
+        <Tab Title="Login">
+            <ShellContent ContentTemplate="{DataTemplate local:Login}" Route="Login" />
+	    </Tab>
+        <Tab Title="Kitchen">
+            <ShellContent ContentTemplate="{DataTemplate local:Kitchen}" Route="Kitchen" />
+	    </Tab>
+    </TabBar>
 
 </Shell>
 
