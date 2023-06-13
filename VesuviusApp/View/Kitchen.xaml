@@ -9,6 +9,9 @@
     <Grid RowDefinitions="100, Auto, *"
 	      ColumnDefinitions=".75*, .25*">
 
+		<Button Text="Refresh"
+				Command="{Binding RefreshCommand}"
+				Grid.Row="0" />
 
 	    <CollectionView Grid.Row="2" 
 						Grid.Column="2" 

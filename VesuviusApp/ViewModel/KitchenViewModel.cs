@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.ObjectModel;
 using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
+using VesuviusApp.Services;
 
 namespace VesuviusApp.ViewModel
 {
@@ -17,10 +19,20 @@ namespace VesuviusApp.ViewModel
 				"Test Order 5",
 				"Test Order 6"
 			};
+
 		}
 
 		[ObservableProperty]
-		ObservableCollection<string> orders;
+		private ObservableCollection<string> orders;
+
+		[RelayCommand]
+		private async void Refresh()
+		{
+			// TODO Call endpoint and fill `Orders`
+			using HttpResponseMessage response = await GenericService.httpClient.GetAsync("http://localhost:8080/api/Order/GetAll");
+			string responseBody = await response.Content.ReadAsStringAsync();
+			System.Diagnostics.Debug.WriteLine(responseBody);
+		}
 	}
 }
 
