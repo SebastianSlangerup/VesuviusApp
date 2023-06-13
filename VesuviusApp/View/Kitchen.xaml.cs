@@ -1,6 +1,6 @@
 ﻿namespace VesuviusApp.View;
 
-public partial class Kitchen : ContentView
+public partial class Kitchen : ContentPage
 {
 	public Kitchen()
 	{
