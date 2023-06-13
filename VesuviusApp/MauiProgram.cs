@@ -31,6 +31,8 @@ public static class MauiProgram
         builder.Services.AddSingleton<TableViewModel>();
         builder.Services.AddTransient<UserViewModel>();
         builder.Services.AddTransient<MainPage>();
+		builder.Services.AddSingleton<Kitchen>();
+		builder.Services.AddSingleton<KitchenViewModel>();
 
         return builder.Build();
 	}
