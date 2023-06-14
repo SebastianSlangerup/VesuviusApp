@@ -8,7 +8,7 @@ namespace VesuviusApp.ViewModel
 	{
 		public KitchenViewModel()
 		{
-			Orders = new ObservableCollection<string>
+            orders = new ObservableCollection<string>
 			{
 				"Test Order 1",
 				"Test Order 2",

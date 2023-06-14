@@ -8,6 +8,7 @@ using Microsoft.Maui.Controls.PlatformConfiguration;
 using VesuviusApp.Model;
 using Newtonsoft.Json;
 using VesuviusApp.View;
+using System.Net.Http.Json;
 
 namespace VesuviusApp.Services
 {
@@ -19,34 +20,12 @@ namespace VesuviusApp.Services
         }
 
         ObservableCollection<User> _users;
-        public async Task<User> Login(string username = "TestUser", string password = "Admin2023")
+        public async Task<User> Login(User user)
         {
-#if DEBUG
-            if (string.IsNullOrEmpty(username) || string.IsNullOrEmpty(password))
-            {
-                username = "TestUser";
-                password = "Admin2023";
-            }
-#endif
-            var login = await GenericService.client.GetAsync(GenericService.baseDBEndpoint + $"/login/{username}/{password}");
-
-            if (login.StatusCode == HttpStatusCode.OK)
-            {
-                var Token = getToken(new User(username, password)).ToString();
-                var user = new User(username, password, true, Token);
-                _users.Add(user);
-                return user;
-            }
-            return new User();
-        }
-
-        public async Task<string> getToken(User user)
-        {
-
             var username = user.Username;
             var password = user.Password;
 
-            var Endpoint = "http://127.0.0.1:5118" + $"/security/createToken";
+            var Endpoint = GenericService.baseDBEndpoint + $"/api/Authentication/login";
 
             var JsonData = JsonConvert.SerializeObject(new User(username, password, false));
             var RoleContent = new StringContent(JsonData, Encoding.UTF8, "application/json");
@@ -54,17 +33,16 @@ namespace VesuviusApp.Services
 
             var res = await GenericService.client.PostAsync(Endpoint, RoleContent);
 
-            if (res == null || res.StatusCode != HttpStatusCode.OK)
-            {
-                Console.WriteLine(res.StatusCode);
-            }
-            if (res.StatusCode == HttpStatusCode.Unauthorized)
-            {
-                Application.Current.MainPage = new Login(new ViewModel.UserViewModel());
-            }
+            var responseBody = await res.Content.ReadFromJsonAsync<JsonTokenResponse>();
 
-            return res.Content.ToString();
-
+            if (res.StatusCode == HttpStatusCode.OK)
+            {
+                var Newuser = new User(username, password, true, responseBody.Token);
+                GenericService.client.DefaultRequestHeaders.Add("Authorization", "Bearer " + responseBody.Token);
+                _users.Add(Newuser);
+                return Newuser;
+            }
+            return new User();
         }
     }
 }

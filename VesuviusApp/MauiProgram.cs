@@ -25,7 +25,8 @@ public static class MauiProgram
         builder.Logging.AddDebug();
 #endif
 
-        builder.Services.AddSingleton<TableService>();
+
+		builder.Services.AddSingleton<TableService>();
         builder.Services.AddSingleton<UserService>();
         builder.Services.AddSingleton<GenericViewModel>();
         builder.Services.AddSingleton<TableViewModel>();

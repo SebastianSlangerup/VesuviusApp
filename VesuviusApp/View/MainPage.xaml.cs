@@ -5,7 +5,7 @@ namespace VesuviusApp.View;
 public partial class MainPage : ContentPage
 {
 
-	public MainPage(GenericViewModel viewModel)
+	public MainPage(TableViewModel viewModel)
 	{
 		InitializeComponent();
         BindingContext = viewModel;

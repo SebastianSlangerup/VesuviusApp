@@ -1,18 +1,47 @@
-﻿using System;
+﻿using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
+using Microsoft.Maui.Controls;
+using System;
 using System.Collections.ObjectModel;
 using VesuviusApp.Model;
 using VesuviusApp.Services;
 
 namespace VesuviusApp.ViewModel
 {
-    public class TableViewModel : GenericViewModel
+    public partial class TableViewModel : GenericViewModel
     {
-        public ObservableCollection<Table> Tables { get; set; }
+        [ObservableProperty]
+        ObservableCollection<Table> tables;
 
-        void GetTables()
+        public TableViewModel()
         {
-           Tables =  TableService.SelectFreeTables().Result;
+            Title = "Free Tables";
+            tables = new ObservableCollection<Table>();
+            getAvailableTables = new AsyncRelayCommand(getFreeTables);
+
+
+
         }
-        
+
+        public IAsyncRelayCommand getAvailableTables { get; }
+
+        public async Task getFreeTables()
+        {
+            var Service = new TableService();
+           var Available_tables =  await Service.SelectFreeTables();
+
+            if (Available_tables == null)
+            {
+                return;
+            }
+            else
+            {
+                Tables = Available_tables;
+            }
+        }
+
+
+
     }
+
 }

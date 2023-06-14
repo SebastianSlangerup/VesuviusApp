@@ -10,5 +10,11 @@ namespace VesuviusApp.Model
     {
         private int id;
         private int seats;
+
+        public Table(int Id, int Seats)
+        {
+            id = Id;
+            seats = Seats;
+        }
     }
 }

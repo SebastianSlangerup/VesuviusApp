@@ -40,7 +40,7 @@ namespace VesuviusApp.ViewModel
                 ErrorMsg = "Username or Password not set";
                 return;
             }
-            var res = await login.Login(this.Username, Password);
+            var res = await login.Login(new User(Username,Password));
             if (res.Token == null)
             {
                 ErrorMsg = "User Not found";

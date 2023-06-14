@@ -4,24 +4,44 @@
              x:Class="VesuviusApp.View.MainPage"
              xmlns:model="clr-namespace:VesuviusApp.Model"
              xmlns:viewmodel="clr-namespace:VesuviusApp.ViewModel"
-             x:DataType="viewmodel:GenericViewModel"
+             x:DataType="viewmodel:TableViewModel"
              Title="{Binding Title}"
              >
 
-    <ScrollView>
-        <VerticalStackLayout
-            Spacing="25"
-            Padding="30,0"
-            VerticalOptions="Center">
+    <Grid RowDefinitions="100, Auto, *"
+	      ColumnDefinitions=".75*, .25*">
 
-            <Image
-                Source="dotnet_bot.png"
-                SemanticProperties.Description="Cute dot net bot waving hi to you!"
-                HeightRequest="200"
-                HorizontalOptions="Center" />
 
-        </VerticalStackLayout>
-    </ScrollView>
+        <CollectionView Grid.Row="2" 
+						Grid.Column="2" 
+						ItemsSource="{Binding Tables}">
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <SwipeView>
+                        <SwipeView.RightItems>
+                            <SwipeItems>
+                                <SwipeItem Text="Delete" 
+								           BackgroundColor="Red" />
+                            </SwipeItems>
+                        </SwipeView.RightItems>
+                        <Grid Padding="0, 5">
+                            <Frame>
+                                <Label Text="{Binding .}"
+								       FontSize="24" />
+                            </Frame>
+                        </Grid>
+                    </SwipeView>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+        <Button
+            x:Name="Refresh"
+            Text="Refresh"
+            Command="{Binding getAvailableTables}"
+            
+            
+            ></Button>
+    </Grid>
 
 </ContentPage>
 
