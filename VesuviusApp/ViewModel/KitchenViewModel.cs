@@ -12,13 +12,11 @@ namespace VesuviusApp.ViewModel
 	{
 		public KitchenViewModel()
 		{
-			Orders = new ObservableCollection<Order>(_listOrders);
+			Orders = new List<Order>();
 		}
 
-		private List<Order> _listOrders = new List<Order>();
-
 		[ObservableProperty]
-		private ObservableCollection<Order> _orders;
+		private List<Order> _orders;
 
 		[RelayCommand]
 		private async void Refresh()
@@ -26,7 +24,7 @@ namespace VesuviusApp.ViewModel
 			using HttpResponseMessage response = await GenericService.client.GetAsync("http://localhost:8080/api/Order/GetAll");
 			string responseBody = await response.Content.ReadAsStringAsync();
 
-			_listOrders = JsonSerializer.Deserialize<List<Order>>(responseBody);
+			Orders = JsonSerializer.Deserialize<List<Order>>(responseBody);
 		}
 	}
 }
