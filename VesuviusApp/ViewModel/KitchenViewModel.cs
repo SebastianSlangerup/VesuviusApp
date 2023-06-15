@@ -29,7 +29,7 @@ namespace VesuviusApp.ViewModel
 		private async void Refresh()
 		{
 			// TODO Call endpoint and fill `Orders`
-			using HttpResponseMessage response = await GenericService.httpClient.GetAsync("http://localhost:8080/api/Order/GetAll");
+			using HttpResponseMessage response = await GenericService.client.GetAsync("http://localhost:8080/api/Order/GetAll");
 			string responseBody = await response.Content.ReadAsStringAsync();
 			System.Diagnostics.Debug.WriteLine(responseBody);
 		}

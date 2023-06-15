@@ -18,9 +18,6 @@ namespace VesuviusApp.ViewModel
             Title = "Free Tables";
             tables = new ObservableCollection<Table>();
             getAvailableTables = new AsyncRelayCommand(getFreeTables);
-
-
-
         }
 
         public IAsyncRelayCommand getAvailableTables { get; }

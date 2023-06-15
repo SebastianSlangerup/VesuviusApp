@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json.Linq;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,11 +11,19 @@ namespace VesuviusApp.Model
     {
         private int id;
         private int seats;
+        private string name;
 
         public Table(int Id, int Seats)
         {
             id = Id;
             seats = Seats;
+            name = "Table";
+
+        }
+
+        public override string ToString()
+        {
+            return $"Id {id}. {name} with {seats} seats";
         }
     }
 }

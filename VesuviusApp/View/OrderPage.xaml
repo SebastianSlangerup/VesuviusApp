@@ -1,13 +1,10 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="VesuviusApp.View.MainPage"
-             xmlns:model="clr-namespace:VesuviusApp.Model"
+             x:Class="VesuviusApp.View.OrderPage"
              xmlns:viewmodel="clr-namespace:VesuviusApp.ViewModel"
-             x:DataType="viewmodel:TableViewModel"
-             Title="{Binding Title}"
-             >
-
+             x:DataType="viewmodel:OrderViewModel"
+             Title="Order">
     <Grid RowDefinitions="100, Auto, *"
 	      ColumnDefinitions=".75*, .25*">
 
@@ -16,24 +13,10 @@
                         Grid.RowSpan="1"
 						Grid.Column="0" 
                         Grid.ColumnSpan="3"
-						ItemsSource="{Binding Tables}">
+						ItemsSource="{Binding Orders}">
             <CollectionView.ItemTemplate>
                 <DataTemplate>
                     <SwipeView>
-                        <SwipeView.RightItems>
-                            <SwipeItems>
-                                <SwipeItem Text="Delete Table" 
-								           BackgroundColor="Red" />
-
-                            </SwipeItems>
-                        </SwipeView.RightItems>
-                        <SwipeView.LeftItems>
-                            <SwipeItems>
-                                <SwipeItem Text="Use Table" 
-								           BackgroundColor="Green" />
-                               
-                            </SwipeItems>
-                        </SwipeView.LeftItems>
                         <Grid Padding="0, 5">
                             <Frame>
                                 <Label Text="{Binding .}"
@@ -49,11 +32,9 @@
             Grid.ColumnSpan="2"
             x:Name="Refresh"
             Text="Refresh"
-            Command="{Binding getAvailableTables}"
+            Command="{Binding }"
             
             
             ></Button>
     </Grid>
-
 </ContentPage>
-
