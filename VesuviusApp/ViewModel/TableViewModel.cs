@@ -18,9 +18,13 @@ namespace VesuviusApp.ViewModel
             Title = "Free Tables";
             tables = new ObservableCollection<Table>();
             getAvailableTables = new AsyncRelayCommand(getFreeTables);
+            NewOrder = new AsyncRelayCommand(newOrder);
+            DeleteTable = new AsyncRelayCommand(deleteTable);
         }
 
         public IAsyncRelayCommand getAvailableTables { get; }
+        public IAsyncRelayCommand NewOrder { get; }
+        public IAsyncRelayCommand DeleteTable { get; }
 
         public async Task getFreeTables()
         {
@@ -35,6 +39,15 @@ namespace VesuviusApp.ViewModel
             {
                 Tables = Available_tables;
             }
+        }
+
+        public async Task newOrder()
+        {
+            Application.Current.MainPage = new OrderViewModel();
+        }
+        public async Task deleteTable()
+        {
+
         }
 
 

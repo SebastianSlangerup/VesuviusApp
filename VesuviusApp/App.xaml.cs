@@ -9,15 +9,7 @@ public partial class App : Application
     public App(UserViewModel viewModel)
 	{
 		InitializeComponent();
-
-<<<<<<< Updated upstream
 		MainPage = new Login(viewModel);
-
-
-
-=======
-		MainPage = new AppShell();
->>>>>>> Stashed changes
 	}
 }
 

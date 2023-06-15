@@ -30,7 +30,8 @@
                         <SwipeView.LeftItems>
                             <SwipeItems>
                                 <SwipeItem Text="Use Table" 
-								           BackgroundColor="Green" />
+								           BackgroundColor="Green"
+                                           Command="{Binding NewOrder}"/>
                                
                             </SwipeItems>
                         </SwipeView.LeftItems>
