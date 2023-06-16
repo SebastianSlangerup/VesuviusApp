@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json.Linq;
+﻿using CommunityToolkit.Mvvm.ComponentModel;
+using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,11 +8,11 @@ using System.Threading.Tasks;
 
 namespace VesuviusApp.Model
 {
-    public class Table
+    public partial class Table
     {
-        private int id;
-        private int seats;
-        private string name;
+        public int id;
+        public int seats;
+        public string name;
 
         public Table(int Id, int Seats)
         {

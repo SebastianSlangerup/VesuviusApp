@@ -3,8 +3,10 @@ using CommunityToolkit.Mvvm.Input;
 using Microsoft.Maui.Controls;
 using System;
 using System.Collections.ObjectModel;
+using System.Windows.Input;
 using VesuviusApp.Model;
 using VesuviusApp.Services;
+using VesuviusApp.View;
 
 namespace VesuviusApp.ViewModel
 {
@@ -18,13 +20,15 @@ namespace VesuviusApp.ViewModel
             Title = "Free Tables";
             tables = new ObservableCollection<Table>();
             getAvailableTables = new AsyncRelayCommand(getFreeTables);
-            NewOrder = new AsyncRelayCommand(newOrder);
-            DeleteTable = new AsyncRelayCommand(deleteTable);
+            
+            
         }
 
+       
+
         public IAsyncRelayCommand getAvailableTables { get; }
-        public IAsyncRelayCommand NewOrder { get; }
-        public IAsyncRelayCommand DeleteTable { get; }
+       
+        
 
         public async Task getFreeTables()
         {
@@ -41,17 +45,21 @@ namespace VesuviusApp.ViewModel
             }
         }
 
-        public async Task newOrder()
+        [RelayCommand]
+        public async Task newOrder(Table table)
         {
-            Application.Current.MainPage = new OrderViewModel();
+            await Shell.Current.GoToAsync($"{nameof(OrderPage)}",
+                new Dictionary<string, object>
+                {
+                    {"Table", table}
+                });
         }
-        public async Task deleteTable()
+
+        [RelayCommand]
+        public void DeleteTable(Table table)
         {
-
+            Tables.Remove(table);
         }
-
-
-
     }
 
 }

@@ -4,37 +4,12 @@
              x:Class="VesuviusApp.View.OrderPage"
              xmlns:viewmodel="clr-namespace:VesuviusApp.ViewModel"
              x:DataType="viewmodel:OrderViewModel"
-             Title="Order">
+             Title="{Binding Title}">
     <Grid RowDefinitions="100, Auto, *"
 	      ColumnDefinitions=".75*, .25*">
+        <Label Text="{Binding Name}" />
 
 
-        <CollectionView Grid.Row="2"
-                        Grid.RowSpan="1"
-						Grid.Column="0" 
-                        Grid.ColumnSpan="3"
-						ItemsSource="{Binding Orders}">
-            <CollectionView.ItemTemplate>
-                <DataTemplate>
-                    <SwipeView>
-                        <Grid Padding="0, 5">
-                            <Frame>
-                                <Label Text="{Binding .}"
-								       FontSize="24" />
-                            </Frame>
-                        </Grid>
-                    </SwipeView>
-                </DataTemplate>
-            </CollectionView.ItemTemplate>
-        </CollectionView>
-        <Button
-          Grid.Row="0"
-            Grid.ColumnSpan="2"
-            x:Name="Refresh"
-            Text="Refresh"
-            Command="{Binding }"
-            
-            
-            ></Button>
+
     </Grid>
 </ContentPage>
