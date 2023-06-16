@@ -8,17 +8,13 @@ namespace VesuviusApp.Model
 {
     public class Order
     {
-        public float? Price_total { get; set; }
+        public int Id { get; set; }
+        public int Price_total { get; set; }
         public DateTime Order_date { get; set; }
         public int Customer_count { get; set; }
-        public string State { get; set; } = string.Empty;
-        public int? EmployeeId { get; set; }
-        public int? CustomerId { get; set; }
-
-        public Order()
-        {
-            
-        }
+        public string Order_state { get; set; }
+        public int EmployeeId { get; set; }
+        public int CustomerId { get; set; }
     }
 }
 
