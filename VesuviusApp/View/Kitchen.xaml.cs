@@ -4,9 +4,9 @@ namespace VesuviusApp.View;
 
 public partial class Kitchen : ContentPage
 {
-	public Kitchen(KitchenViewModel vm)
+	public Kitchen()
 	{
 		InitializeComponent();
-		BindingContext = vm;
+		BindingContext = new KitchenViewModel();
 	}
 }
